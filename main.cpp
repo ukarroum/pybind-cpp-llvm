@@ -12,6 +12,7 @@ void print_usage()
     cout << "Usage: " << endl;
     cout << "pybindcpp <path to py script>" << endl;
 }
+
 int main(int argc, char *argv[])
 {
     if(argc != 2)
@@ -26,7 +27,18 @@ int main(int argc, char *argv[])
     ifstream infile(script_name);
 
     while(getline(infile, line))
-        cout << line << endl;
+    {
+        if(line == "def compute():")
+        {
+            while(getline(infile, line))
+            {
+                if(line[0] != ' ' && line[0] != '\t')
+                    break;
+            
+                cout << line << endl;
+            }
+        }
+    }
 
     return 0;
 }
