@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <fstream>
 
 using namespace std;
 
@@ -20,8 +21,12 @@ int main(int argc, char *argv[])
     }
 
     string script_name = argv[1];
+    string line;
 
-    cout << script_name << endl;
+    ifstream infile(script_name);
+
+    while(getline(infile, line))
+        cout << line << endl;
 
     return 0;
 }
